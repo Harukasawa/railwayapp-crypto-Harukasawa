@@ -8,12 +8,6 @@ app = Flask(__name__)
 # Konfigurasi logging
 logging.basicConfig(level=logging.DEBUG)
 
-# Aktivasi proxy
-proxies = {
-    "https": "https://railwayapp-crypto-harukasawa-production.up.railway.app/:8080",
-}
-response = requests.get("https://api.coingecko.com/api/v3/simple/price", params=params, proxies=proxies)
-
 # Route untuk root URL
 @app.route('/')
 def index():
@@ -30,8 +24,8 @@ def get_crypto_prices():
         "vs_currencies": "usd"
     }
     try:
-        # Mengirim permintaan ke CoinGecko
-        response = requests.get(url, params=params)
+        # Mengirim permintaan ke CoinGecko menggunakan proxy
+        response = requests.get(url, params=params, proxies=proxies)
         response.raise_for_status()
         return jsonify(response.json())
     except requests.exceptions.RequestException as e:
