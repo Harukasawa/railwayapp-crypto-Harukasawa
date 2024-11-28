@@ -26,7 +26,8 @@ def get_crypto_prices():
     }
     try:
         # Mengirim permintaan ke CoinGecko menggunakan proxy
-        response = requests.get(url, params=params, proxies=proxies)
+        #response = requests.get(url, params=params, proxies=proxies)
+        response = requests.get(url, params=params)  # Hapus `proxies=proxies`
         response.raise_for_status()  # Cek jika ada error
         return jsonify(response.json())
     except requests.exceptions.RequestException as e:
