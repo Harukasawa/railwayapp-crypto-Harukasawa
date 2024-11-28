@@ -8,7 +8,14 @@ app = Flask(__name__)
 # Konfigurasi logging
 logging.basicConfig(level=logging.DEBUG)
 
-# Definisikan route untuk mendapatkan harga crypto
+# Route untuk root URL
+@app.route("/", methods=["GET"])
+def home():
+    return jsonify({
+        "message": "Welcome to the Crypto Price API. Visit /crypto to get prices for Bitcoin and Ethereum."
+    })
+
+# Route untuk mendapatkan harga crypto
 @app.route("/crypto", methods=["GET"])
 def get_crypto_prices():
     url = "https://api.coingecko.com/api/v3/simple/price"
