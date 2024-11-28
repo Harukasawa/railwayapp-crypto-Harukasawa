@@ -21,4 +21,5 @@ If you click "Try to test Rail", this output should be:
 
 🗒️ Install with following step below:
 - Install requirements `pip install -r requirements.txt`
+- Install runtime `pip install -r runtime.txt`
 - Then deploy or running server in `python3 flask.py`
