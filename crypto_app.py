@@ -8,6 +8,12 @@ app = Flask(__name__)
 # Konfigurasi logging
 logging.basicConfig(level=logging.DEBUG)
 
+# Aktivasi proxy
+proxies = {
+    "https": "https://railwayapp-crypto-harukasawa-production.up.railway.app/:8080",
+}
+response = requests.get("https://api.coingecko.com/api/v3/simple/price", params=params, proxies=proxies)
+
 # Route untuk root URL
 @app.route('/')
 def index():
