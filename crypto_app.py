@@ -25,20 +25,14 @@ def get_crypto_prices():
         "vs_currencies": "usd"
     }
     try:
-        # Mengirim permintaan ke CoinGecko menggunakan proxy
-        #response = requests.get(url, params=params, proxies=proxies)
-        response = requests.get(url, params=params)  # Hapus `proxies=proxies`
-        response.raise_for_status()  # Cek jika ada error
+        # Mengirim permintaan ke CoinGecko
+        response = requests.get(url, params=params)
+        response.raise_for_status()
         return jsonify(response.json())
     except requests.exceptions.RequestException as e:
-        # Menangkap error dan mencatatnya
         logging.error(f"Error fetching data: {e}")
         return jsonify({"error": str(e)}), 500
 
-# Menjalankan aplikasi jika file ini dieksekusi langsung
-#if __name__ == "__main__":
-#    port = int(os.environ.get("PORT", 8080))  # Menggunakan port dari environment Railway
-#    app.run(debug=True, host="0.0.0.0", port=port)
-
+# Menjalankan aplikasi untuk pengembangan lokal
 if __name__ == '__main__':
-    app.run(debug=True, port=os.getenv("PORT", default=5000))
+    app.run(debug=True, host="0.0.0.0", port=int(os.getenv("PORT", 5000)))
