@@ -9,8 +9,8 @@ app = Flask(__name__)
 logging.basicConfig(level=logging.DEBUG)
 
 # Route untuk root URL
-@app.route("/", methods=["GET"])
-def home():
+@app.route('/')
+def index():
     return jsonify({
         "message": "Welcome to the Crypto Price API. Visit /crypto to get prices for Bitcoin and Ethereum."
     })
