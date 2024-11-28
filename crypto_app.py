@@ -1,4 +1,5 @@
 from flask import Flask, jsonify
+import os
 import requests
 import logging
 
@@ -34,7 +35,9 @@ def get_crypto_prices():
         return jsonify({"error": str(e)}), 500
 
 # Menjalankan aplikasi jika file ini dieksekusi langsung
-if __name__ == "__main__":
-    import os
-    port = int(os.environ.get("PORT", 8080))  # Menggunakan port dari environment Railway
-    app.run(debug=True, host="0.0.0.0", port=port)
+#if __name__ == "__main__":
+#    port = int(os.environ.get("PORT", 8080))  # Menggunakan port dari environment Railway
+#    app.run(debug=True, host="0.0.0.0", port=port)
+
+if __name__ == '__main__':
+    app.run(debug=True, port=os.getenv("PORT", default=5000))
