@@ -35,4 +35,6 @@ def get_crypto_prices():
 
 # Menjalankan aplikasi jika file ini dieksekusi langsung
 if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0", port=8000)
+    import os
+    port = int(os.environ.get("PORT", 8080))  # Menggunakan port dari environment Railway
+    app.run(debug=True, host="0.0.0.0", port=port)
